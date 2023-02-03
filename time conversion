@@ -1,0 +1,36 @@
+import java.io.*;
+import java.text.*;
+import java.util.*;
+
+public class Solution {
+   public static String timeConversion(String s) {
+        DateFormat inFormat = new SimpleDateFormat("hh:mm:ssaa");
+        DateFormat outFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = null;
+        try {
+            date = inFormat.parse(s); 
+        } catch (ParseException e ){
+            e.printStackTrace();
+        }
+        if(date != null) {
+            return outFormat.format(date);
+        } else {
+            return "";
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = timeConversion(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
